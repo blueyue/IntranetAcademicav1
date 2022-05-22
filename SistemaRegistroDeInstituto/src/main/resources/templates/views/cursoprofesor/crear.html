@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantillas/Atemplate :: head">
+</head>
+<body>
+	<header th:replace="plantillas/Atemplate :: header"></header>
+
+	<div class="container col-6">
+		<div class="card bg-light">
+			<form th:action="@{/cp/guardar}" th:object="${cursoprofesor}"
+				method="POST">
+				<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+				<div class="card-body col-8 mx-auto">
+
+					<div class="form-group row">
+						<input type="hidden" th:field="*{iddet}"
+							class="form-control form-control-sm col-6" id="id" name="id">
+					</div>
+
+					<div class="form-group row">
+						<label class="col-md-2" for="idturno">Turno</label> <select
+							th:field="*{idturno}" class="form-control form-control-sm col-2"
+							id="idturno">
+							<option th:each="tur:${lstTurno}" th:value="${tur.idturno}"
+								th:text="${tur.nomturno}" />
+						</select>
+						<label class="col-md-2" for="estado">Estado</label> 
+						<!--  <input th:field="*{estado}" type="number" min="0" max="3"
+							class="form-control form-control-sm col-md-3" id="estado">-->
+							<select th:field="*{estado}" class="form-control form-control-sm col-4"
+							id="estado">
+							<option value="0">Asociar(SoloUsoInterno)</option>
+							<option value="1">Proximamente</option>
+							<option value="1">EnProceso</option>
+							<option value="1">Finalizado</option>
+						</select>
+						
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2" for="profesor">Profesor</label> <select
+							th:field="*{idprofesor}"
+							class="form-control form-control-sm col-6" id="profesor">
+							<option th:each="pro:${lstProfesor}" th:value="${pro.idprofesor}"
+								th:text="${pro.prof_nom}" />
+
+						</select>
+					</div>
+
+					<!--</div>-->
+					<div class="form-group row">
+						<label class="col-md-2" for="curso">Curso</label> <select
+							th:field="*{idcurso}" class="form-control form-control-sm col-6"
+							id="curso">
+							<option th:each="cur:${lstCurso}" th:value="${cur.idcurso}"
+								th:text="${cur.nomcurso}" />
+						</select>
+					</div>
+					<div class="form-group row">
+						<label class="col" for="divhora">Horario: 9:00 AM(9:00) - 6:00 PM(18:00)</label> 
+					</div>
+					<div class="form-group row" id="divhora">
+						<label class="col-md-3" for="horainicurso">Hora de Inicio</label> <input
+							th:field="*{horainicurso}" type="time"
+							class="form-control form-control-sm col-md-2" id="horainicurso"
+							min="09:00" max="18:00">
+						<label class="col-md-3" for="horafincurso">Hora de Inicio</label> <input
+							th:field="*{horafincurso}" type="time"
+							class="form-control form-control-sm col-md-2" id="horafincurso"
+							min="09:00" max="18:00">
+					</div>
+					
+					
+
+				</div>
+				<div class="card-footer bg-dark" style="text-align: center">
+					<input type="submit" class="btn btn-primary btn-sm" value="Guardar" />
+					<a th:href="@{/cp/listabase}" class="btn btn-primary btn-sm">Regresar</a>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<footer th:replace="plantillas/Atemplate :: footer"></footer>
+</body>
+
+</html>

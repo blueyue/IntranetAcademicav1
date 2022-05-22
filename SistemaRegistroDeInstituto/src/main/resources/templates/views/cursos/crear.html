@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantillas/Atemplate :: head">
+</head>
+<body>
+	<header th:replace="plantillas/Atemplate :: header"></header>
+
+	<div class="container">
+		<div class="card bg-light">
+			<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<form th:action="@{/save-cursos}"th:object="${cursos}"method="POST">>
+ 
+					<div class="form-group row">
+						<input type="hidden" th:field="*{idcurso}" class="form-control form-control-sm col-6" id="idcurso">
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2" for="nomcurso ">Curso</label>
+						 <input th:field="*{nomcurso}"  
+							type="text" class="form-control form-control-sm col-6"
+							id="nomcurso" placeholder="nomcurso"> <small></small>
+					</div>
+					
+						<!--</div>-->
+						<div class="form-group row">
+						<label class="col-md-2" for="turno">Turno</label> 
+						<select th:field="*{turno}"  
+							class="form-control form-control-sm col-6"
+							id="turno">
+							<option 
+								th:each="tur:${lstTurno}" 
+								th:value="${tur.idturno}"
+								th:text="${tur.nomturno}" />
+
+						</select>
+					</div> 
+
+					
+					<div class="form-group row">
+						<label class="col-md-2" for="horainicurso">Hora de inicio</label>
+						 <input th:field="*{horainicurso}"  
+							type="text" class="form-control form-control-sm col-6"
+							id="horainicurso" placeholder="horainicurso"> <small></small>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2" for="horafincurso">Hora de fin</label>
+						 <input th:field="*{horafincurso}"  
+							type="text" class="form-control form-control-sm col-6"
+							id="horafincurso" placeholder="horafincurso"> <small></small>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2" for="estado">Estado</label>
+						 <input th:field="*{estado}"  
+							type="text" class="form-control form-control-sm col-6"
+							id="estado" placeholder="estado"> <small></small>
+					</div>
+					<div class="form-group row">
+						<label class="col-md-2" for="requisito">Requisito</label>
+						 <input th:field="*{requisito}"  
+							type="text" class="form-control form-control-sm col-6"
+							id="requisito" placeholder="requisito"> <small></small>
+					</div>
+					
+				
+					
+					<div class="card-footer bg-dark">
+						<input type="submit" class="btn btn-primary btn-sm"
+							value="Guardar" />
+							<a th:href="@{/listar-carreras}" class="btn btn-primary btn-sm">Regresar</a>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="plantillas/Atemplate :: footer"></footer>
+</body>
+
+</html>

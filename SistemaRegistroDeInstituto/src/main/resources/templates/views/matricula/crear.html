@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantillas/Utemplate :: head">
+
+</head>
+<body>
+	<header th:replace="plantillas/Utemplate :: header"></header>
+
+	<div class="container">
+		<div class="card bg-light" >
+			<div class="card-header bg-dark text-white" ><h1 style="text-align: center">Datos de Matricula</h1> </div>
+			<div class="card-body">
+
+				<form th:action="@{/matriculas/registrar}"  th:object=${modmatricula} method="POST">
+		
+		<select th:field="*{idalumno}" hidden><option th:value="${idalum}"/></select>
+				
+		
+				<div class="form-control">
+					<label class="" for="carrera">Carrera</label> 
+					<select th:field="*{idcarrera}" class="form-control custom-select my-1 mr-sm-2 btn btn-secondary dropdown-toggle" id="carrera">
+                            <option  th:each="carrera : ${cbocar}"  
+                            th:value="${carrera.idcarrera}"
+                            th:utext="${carrera.nomcarrera}"></option>
+                    </select>
+				</div>
+				
+				<div class="form-control">
+					<label class="" for="detprocur">Curso | Profesor </label> 
+					<select th:field="*{iddet}" class="form-control custom-select my-1 mr-sm-2 btn btn-secondary dropdown-toggle"  id="detprocur">
+                            <option  th:each="dcr : ${cbodcr}"  
+                            th:value="${dcr.iddet}"
+                            th:utext="${dcr.curso.nomcurso}+' | '+${dcr.profesor.prof_nom}+${dcr.profesor.prof_ape}"></option>
+                    </select>
+				</div>
+				
+				
+			 	<a style="float:left;margin:2%" th:href="@{/matriculas/visor/alumno}" class="btn btn-secondary">Regresar</a>
+				<input type="submit" value="Guardar" class="btn btn-success" style="float:right;margin-right:2%;margin:2%"/>
+			</form>
+			</div>
+
+			
+		
+		</div>
+	</div>
+			
+	<footer th:replace="plantillas/Utemplate :: footer"></footer>
+	
+</body>
+
+</html>

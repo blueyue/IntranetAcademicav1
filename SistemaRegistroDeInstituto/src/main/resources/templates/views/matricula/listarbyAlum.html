@@ -1,0 +1,79 @@
+
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace = "plantillas/Utemplate :: head">
+</head>
+<body>
+		<header th:replace="plantillas/Utemplate :: header"></header>
+		
+		<div class="container">
+		
+		<div id="tbldat"><h1 style="text-align: center;" data-th-text="'Bienvenido/a : '+${user?.alum_nom}+${user?.alum_ape}"></h1></div>
+		<br/>
+		<h1  style="text-align: center;">Listado de Matriculas</h1>
+		
+		
+		<br/>
+		<div style="text-align: center"><a th:href="@{/matriculas/crear}" class="btn btn-warning"><img src="https://img.icons8.com/ios-filled/18/000000/save--v1.png"/></a></div>
+		<br/>
+		<div th:if="${!list.isEmpty()}" class="row table-responsive">
+			<table class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Carrera</th>
+						<th>Curso</th>
+						<th>Profesor</th>
+						<th>Fecha</th>
+						<th>Estado</th>
+						<th>Nro.Boleta</th>
+						<th>Servicio</th>
+						<th>Monto</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr th:each="matricula : ${list}">
+						<td th:text="${matricula?.carrera?.nomcarrera}">
+						<td th:text="${matricula?.detallecurso?.curso?.nomcurso}">
+						<td th:text="${matricula?.detallecurso?.profesor?.prof_nom}+' '+${matricula?.detallecurso?.profesor?.prof_ape}">
+						<!-- <td th:text="${matricula?.alumno?.alum_nom}+' '+${matricula?.alumno?.alum_ape}"> -->
+						<td th:text="${matricula?.fecha_matricula}">
+						<td th:text="${matricula?.estado == 1 ? 'Activa': matricula?.estado == 0 ? 'Procesando' : 'Vencida' }">
+						<td th:text="${matricula?.boleta?.idboleta}">
+						<td th:text="${matricula?.boleta?.descripcion}">
+						<td th:text="${matricula?.boleta?.tarifaServicio?.monto}">
+						<td style="text-align: center"><a th:href="@{/matriculas/mismatriculas/editar/}+${matricula.nro_matricula}" class="btn btn-warning"><img src="https://img.icons8.com/ios-glyphs/18/000000/edit--v1.png"/></a></td>
+						<td style="text-align: center"><a th:onclick="eliminarmatricula([[${matricula.nro_matricula}]])" class="btn btn-warning"><img src="https://img.icons8.com/ios-glyphs/18/000000/trash--v1.png"/></a></td>
+					
+					</tr>
+				</tbody>
+			</table>	
+			
+		
+		</div>
+
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<nav aria-label="Pagination">
+						<ul class="pagination justify-content-center">
+							<li class="page-item" th:classappend="${prev == 0 ? 'disabled': ''}">
+								<a class="page-link" th:href="@{/matriculas/visor/alumno}+@{?page=${prev}|}">Anterior</a>
+							</li>
+							<li class="page-item" th:each="page : ${pages}" 
+							th:classappend="${current == page ? 'active': ''}">
+								<a class="page-link" th:href="@{/matriculas/visor/alumno}+@{|?page=${page}|}" th:text="${page}"></a>
+							</li>
+							<li class="page-item" th:classappend="${current == last ? 'disabled': ''}">
+								<a class="page-link" th:href="@{/matriculas/visor/alumno}+@{|?page=${next}|}">Siguiente</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+	</div>
+		<footer th:replace="plantillas/Utemplate :: footer"></footer>
+</body>
+</html>

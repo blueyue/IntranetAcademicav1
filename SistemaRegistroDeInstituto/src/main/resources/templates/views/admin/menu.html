@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace = "plantillas/Atemplate :: head">
+</head>
+<body>
+
+		<header th:replace="plantillas/Atemplate :: header"></header>
+		
+		<div class="container">
+		<br/>
+		<h1  style="text-align: center;">Administracion</h1>
+		<br/>
+		<div style="align-items: center; display:flex;justify-content: center;/*width:100%;*/">
+		
+		<div class="divmenu">
+		<img src="https://img.icons8.com/plasticine/200/000000/test-account.png"/><br/>
+		<a th:href="@{/usuario/listar}" class="btnmenu btn btn-success">Registro de Usuarios</a><br/>
+		<a th:href="@{/alumno/listar}" class="btnmenu btn btn-success">Registro de Alumnos</a><br/>
+		</div>
+		<div class="divmenu">
+		<img src="https://img.icons8.com/plasticine/200/000000/business.png"/><br/>
+		<a th:href="@{/profesores/listar}" class="btnmenu btn btn-danger" >Registro de Profesores</a><br/><!-- style="margin-bottom:25%;margin-top:25%;" -->
+		<a th:href="@{/cp/listabase}" class="btnmenu btn btn-secondary" >Asignar Profesores</a>
+		</div>
+		<div class="divmenu">
+		<img src="https://img.icons8.com/plasticine/200/000000/administrative-tools.png"/><br/><!-- style="margin-bottom:20%;margin-top:10%;" -->
+		<a th:href="@{/carreras/listar}" class="btnmenu btn btn-primary">Registro Carreras</a><br/>
+		<a th:href="@{/cursos/listar}" class="btnmenu btn btn-primary">Registro Cursos</a><br/>
+		<a th:href="@{/cc/listar}" class="btnmenu btn btn-secondary"  >Asignar Cursos</a>
+		</div>
+		<div class="divmenu">
+		<img src="https://img.icons8.com/plasticine/200/000000/invoice-1.png"/><br/><br/>
+		<a th:href="@{/matriculas/verificacion}" class="btnmenu btn btn-warning">Matriculas</a>
+		<a th:href="@{/boletas/proceso}" class="btnmenu btn btn-warning">Boletas</a>
+		</div>
+		
+		</div>
+		
+
+	</div>
+		<footer th:replace="plantillas/Atemplate :: footer"></footer>
+</body>
+</html>

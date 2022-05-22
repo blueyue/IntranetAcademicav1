@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantillas/Atemplate :: head">
+</head>
+
+<body class="bodygeneral">
+	<header th:replace="plantillas/Atemplate :: header"></header>
+	<div class = "container">
+
+	<div class="bodysimple">
+		<h1
+			style="text-align: center; padding: 1%; width: inherit; letter-spacing: 0.255em; font-weight: 800"
+			th:text="${titulo}"></h1>
+		<!--<p th:text="${alumnos}"></p>-->
+	</div>
+	
+	<div class="bodysimple">
+	
+	<form th:action="@{/alumno/listar}" method="get">
+		<div class="row">
+			<div class="col-2">
+				<label class="col-md-2" for="ape">Apellido</label>
+			</div>
+			<div class="col">
+				<input type="text" th:name="param"
+					class="form-control form-control-sm" id="ape" name="param">
+			</div>
+			<div class="col-2">
+				<input type="submit" class="btn btn-primary col" value="Buscar" />
+			</div>
+		</div>
+	</form>
+		<a class="btn btn-primary btn-sm" th:href="@{/alumno/crear}"
+			th:text="'Nuevo Alumno'" title="Crear Nuevo Alumno"></a>
+	</div>
+	<div class="bodysimple container"
+		style="background-color: rgba(255, 255, 255, 0.5)">
+		<table class="table">
+			<thead class="thead-dark">
+				<th scope="col">Id</th>
+				<th scope="col">Nombre</th>
+				<th scope="col">Apellido</th>
+				<th scope="col">Fecha Nac</th>
+				<th scope="col">Direccion</th>
+				<th scope="col">Telefono</th>
+				<th scope="col"></th>
+				<th scope="col"></th>
+			</thead>
+
+			<tbody>
+				<tr th:each="alu:${alumnos}">
+					<th scope="row" th:text="${alu.idalumno}"></th>
+					<td th:text="${alu.alum_nom}"></td>
+					<td th:text="${alu.alum_ape}"></td>
+					<td th:text="${alu.alum_nac}"></td>
+					<td th:text="${alu.alum_dir}"></td>
+					<td th:text="${alu.alum_telf}"></td>
+					<td><a class="btn btn-success btn-sm"
+						th:href="@{/alumno/editar/} + ${alu.idalumno}" th:text="'Editar'"
+						title="Editar Registro"></a></td>
+					<td><a class="btn btn-danger btn-sm"
+						th:href="@{/alumno/eliminar/} + ${alu.idalumno}"
+						th:text="'Eliminar'" title="Eliminar Registro"
+						onclick="return confirm('Esta seguro de eliminar el Registro?');"></a>
+					</td>
+				</tr>
+			</tbody>
+
+		</table>
+		<div class="row mx-auto">
+			<div class="col">
+				<nav aria-label="Pagination">
+					<ul class="pagination justify-content-center">
+						<li class="page-item"
+							th:classappend="${prev == 0 ? 'disabled': ''}"><a
+							class="page-link" th:href="@{/alumno/listar}+@{|?page=${prev}|}">Anterior</a></li>
+						<li class="page-item" th:each="page : ${pages}"
+							th:classappend="${current == page ? 'active': ''}"><a
+							class="page-link" th:href="@{/alumno/listar}+@{|?page=${page}|}"
+							th:text="${page}"></a></li>
+						<li class="page-item"
+							th:classappend="${current == last ? 'disabled': ''}"><a
+							class="page-link" th:href="@{/alumno/listar}+@{|?page=${next}|}">Siguiente</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+	<div class="bodysimple">
+		<a class="btn btn-primary btn-sm" th:href="@{/alumno/listadouser}"
+			th:text="'Listar Usuarios'"></a> <a class="btn btn-primary btn-sm"
+			th:href="@{/admin/menu}" th:text="'Regresar'"></a>
+	</div>
+</div>
+	<footer th:replace="plantillas/Atemplate :: footer"></footer>
+</body>
+
+</html>

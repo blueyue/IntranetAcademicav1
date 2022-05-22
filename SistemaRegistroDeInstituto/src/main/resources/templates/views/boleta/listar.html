@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace = "plantillas/Atemplate :: head">
+</head>
+<body>
+		<header th:replace="plantillas/Atemplate :: header"></header>
+		
+		<div class="container">
+		<div class="row mx-auto"><h1 class="col" style="text-align: center;">Centro de Boletas y Confirmacion de Pagos</h1></div>
+		
+		
+		<form th:action="@{/boletas/proceso}" method="get">
+		<div class="row">
+		<div class="col-3"><label class="col" for="codalum">Código de Alumno</label></div>
+		<div class="col"><input type="text" maxlength="8" th:name="codalum" class="form-control form-control-sm" id="codalum" name="codalum"></div>
+		<div class="col-3"><label class="col" for="estado">Estado</label></div>
+		
+		<div class="col">
+		<!-- <input type="number" min="0" max="1" th:name="estado" class="form-control form-control-sm" id="estado" name="estado"> -->
+		<select th:name="estado" class="form-control form-control-sm" id="estado" name="estado">
+				<option value="" selected>Seleccionar</option>
+				<option value=0>Pendiente</option>
+				<option value=1>Cancelado</option>
+		</select>
+		</div>
+		
+		<div class="col-2"><input type="submit" class="btn btn-primary col" value="Buscar" /></div>
+		</div>
+		</form>	
+		
+		<div  class="row"  th:if="${!list.isEmpty()}">
+			<h2> Listado de Ventas</h2>
+			<table class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Nro</th>
+						<th>Servicio</th>
+						<th>Descripcion</th>
+						<th>Fecha</th>
+						<th>Estado</th>
+						<th>Monto</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr th:each="boleta : ${list}">
+						<td th:text="${boleta?.idboleta}">
+						<td th:text="${boleta?.tarifaServicio?.descripcion}">
+						<td th:text="${boleta?.descripcion}">
+						<td th:text="${boleta?.fecha}">
+						<td th:text="${boleta?.estado == 1 ? 'Cancelado' : 'En Curso'}">
+						<td th:text="${boleta?.tarifaServicio?.monto}">
+						<td style="text-align: center" th:if="${boleta?.estado != 1}"><a class="btn btn-warning" th:onclick="confirmarpago([[${boleta?.idboleta}]])" th:text="'Confirmar Pago'"></a></td>
+
+					</tr>
+				</tbody>
+			</table>	
+		</div>
+		<div  class="row"  th:if="${list.isEmpty()}"> <h3>No se encontraron registros</h3>
+		</div>
+		<div class="row"  th:if="${!list.isEmpty()}">
+				<div class="col">
+					<nav aria-label="Pagination">
+						<ul class="pagination justify-content-center">
+							<li class="page-item" th:classappend="${prev == 0 ? 'disabled': ''}">
+								<a class="page-link" th:href="@{|/?page=${prev}|}">Anterior</a>
+							</li>
+							<li class="page-item" th:each="page : ${pages}" 
+							th:classappend="${current == page ? 'active': ''}">
+								<a class="page-link" th:href="@{|/?page=${page}|}" th:text="${page}"></a>
+							</li>
+							<li class="page-item" th:classappend="${current == last ? 'disabled': ''}">
+								<a class="page-link" th:href="@{|/?page=${next}|}">Siguiente</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<div class="bodysimple">
+			<a class="btn btn-primary btn-sm" th:href="@{/admin/menu}"
+				th:text="'Regresar'"></a>
+		</div>
+
+	</div>
+		<footer th:replace="plantillas/Atemplate :: footer"></footer>
+</body>
+</html>

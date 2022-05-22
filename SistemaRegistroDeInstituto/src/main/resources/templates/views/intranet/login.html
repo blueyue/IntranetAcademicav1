@@ -1,0 +1,69 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inicio de Sesion</title>
+		<link rel="icon" type="image/png" href="https://img.icons8.com/office/16/000000/gears.png" sizes="32x32" >
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" >
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.slim.js"></script>
+<link rel="stylesheet" href="../css/style-login-admin.css">
+</head>
+<body>
+	<div class="caja1">
+		<form method="post" th:action="@{/intranet/verifylogin}">
+			<div class="formtlo">Iniciar sesión</div>
+			
+			<img id="img" src ="https://img.icons8.com/bubbles/100/000000/reading.png"><br/>
+			<span id="valBox">Alumno/a</span>
+    		<input type="range" class="custom-range" value="1" min="1" max="3" step="1" id="customRange3" onchange="showVal(this.value)" name="rol">
+    
+			<br/>
+			<div class="ub1">&#128273; Ingresar usuario</div>
+			<input type="text" name="usuario">
+			<div class="ub1">&#128274; Ingresar password</div>
+
+			<input type="password" name="contrasena" id="txtpassword">
+
+			<div class="ub1">
+				<input type="checkbox" onclick="verpassword()">Mostrar
+				contraseña
+			</div>
+			<div align="center">
+				<input type="submit" value="Ingresar"> <input type="reset"
+					value="Cancelar">
+			</div>
+		</form>
+		<div th:if="${logout == 1}" class="alert alert-success" role="alert">
+		            Se ha cerrado session
+		        </div>
+		        <div th:if="${logerror == 1}" class="alert alert-success" role="alert">
+		            Usuario incorrecto, verifique los datos ingresados
+		        </div>
+		        
+	</div>
+</body>
+<script>
+	function verpassword() {
+		var tipo = document.getElementById("txtpassword");
+		if (tipo.type == "password") {
+			tipo.type = "text";
+		} else {
+			tipo.type = "password";
+		}
+	}
+	
+	function showVal(newVal){
+	   if (newVal == 1) {
+	     document.getElementById("img").src = "https://img.icons8.com/bubbles/100/000000/reading.png";
+	     document.getElementById("valBox").innerHTML= "Alumno/a";
+	   }else if (newVal == 2) {
+	     document.getElementById("img").src = "https://img.icons8.com/bubbles/100/000000/girl-and-math-equation.png";
+	     document.getElementById("valBox").innerHTML= "Profesor/a";
+	   }else if (newVal == 3) {
+	     document.getElementById("img").src = "https://img.icons8.com/external-phatplus-lineal-color-phatplus/100/000000/external-admin-web-design-and-development-phatplus-lineal-color-phatplus.png";
+	     document.getElementById("valBox").innerHTML= "Admin";
+	   }
+	}
+</script>
+</html>

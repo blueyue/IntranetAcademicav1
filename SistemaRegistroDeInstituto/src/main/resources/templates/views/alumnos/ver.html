@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace = "plantillas/Utemplate :: head">
+</head>
+<body>
+<header th:replace="plantillas/Utemplate :: header"></header>
+	<div class="container">
+	<div style="margin: 3%;"> <h1 style="text-align: center;" th:text="${titulo}"></h1> </div>
+		<table class="table">
+					<tbody>
+					
+						<tr>
+							<th scope="row">Código / Identificador</th>
+							<td data-th-text="${user?.codalum}">
+						</tr>
+						<tr>
+							<th scope="row">Nombre</th>
+							<td data-th-text="${user?.alum_nom}">
+						</tr>	
+						<tr>
+							<th scope="row">Apellidos</th>
+							<td data-th-text="${user?.alum_ape}">
+						</tr>
+						<tr>
+							<th scope="row">Fecha de Nacimiento</th>
+							<td data-th-text="${user?.alum_nac}">
+						</tr>
+						<tr>
+							<th scope="row">Dirección</th>
+							<td data-th-text="${user?.alum_dir}">
+						</tr>
+						<tr>
+							<th scope="row">Contacto</th>
+							<td data-th-text="${user?.alum_telf}">
+						</tr>		
+					</tbody>
+				</table>
+		</div>
+	<div class="row">
+			<a class="btn btn-primary btn-sm mx-auto" th:href="@{/usuario/editaruser/}+${user?.idusuario}" th:text="'Editar Usuario'"></a>
+		</div>
+</body>
+</html>

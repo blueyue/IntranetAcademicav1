@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace = "plantillas/Utemplate :: head">
+</head>
+<body >
+		<header th:replace="plantillas/Utemplate :: header"></header>
+	<div class="container">
+		<div style="margin: 3%;"> <h1 style="text-align: center;" th:text="${titulo}+${' de '}+ ${user.alum_nom} + ' ' + ${user.alum_ape}"></h1> </div>
+		
+		<div class="row table-responsive" id="tabledatanotas">
+			<table class="table" >
+				<thead class="thead-dark"> 
+				<tr>
+				 <th scope="col">ALUMNO</th>
+				 <th scope="col">CURSO</th>
+				 <th scope="col">PEA 1</th>
+				 <th scope="col">PEA 2</th>
+				 <th scope="col">PEA 3</th>
+				 <th scope="col">PEA 4</th>
+				 <th scope="col">PARCIAL</th>
+				 <th scope="col">FINAL</th>
+				 <th scope="col">SUSTI</th>
+				 <th scope="col">PROMEDIO</th>
+				 </tr>				 
+				</thead>
+				
+				<tbody>
+				<tr th:each="nota:${notas}">
+					<td th:text="${nota?.alumno?.alum_nom}+' '+${nota?.alumno?.alum_ape}"></td>
+					<td th:text="${nota?.curso?.nomcurso}"></td>
+					<td th:text="${nota?.nota1}"></td>
+					<td th:text="${nota?.nota2}"></td>
+					<td th:text="${nota?.nota3}"></td>
+					<td th:text="${nota?.nota4}"></td>
+					<td th:text="${nota?.exparcial}"></td>
+					<td th:text="${nota?.exfinal}"></td>
+					<td th:text="${nota?.exsustitutorio}"></td>
+					<td th:text="${nota?.promediofinal}"></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+			<div class="row">
+			<a class="btn btn-primary btn-sm mx-auto" th:href="@{/notas/visor/alumno}"
+				th:text="'Regresar'"></a>
+		</div>
+	
+		</div>
+		<footer th:replace="plantillas/Utemplate :: footer"></footer>
+</body>
+</html>

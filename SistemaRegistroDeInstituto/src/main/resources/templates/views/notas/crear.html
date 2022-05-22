@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantillas/Ptemplate :: head">
+</head>
+<body class="bodyprof">
+	<header th:replace="plantillas/Ptemplate :: header"></header>
+
+	<div class="container">
+		<div class="card bg-light">
+			
+			<div class="card-body" >
+			
+					<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+					
+				<form
+					th:action="${modnota.idreporte != null} ? @{/notas/guardar} : @{/notas/registrar}"
+					th:object="${modnota}" method="POST">
+
+					<input th:field="*{idreporte}" type="hidden" name="id"
+						class="form-control" />
+
+					<div
+						style="align-items: center; display: flex; justify-content: center;">
+						<div id="izqcard">
+							<div class="form-notas ">
+								<label class="" for="alumno">Alumno</label> <select
+									th:field="*{idalumno}"
+									class="form-control custom-select my-1 mr-sm-2 btn btn-secondary dropdown-toggle"
+									id="alumno">
+									<option th:each="alumno : ${cboalu}"
+										th:value="${alumno.idalumno}"
+										th:utext="${alumno.alum_nom}+' '+${alumno.alum_ape}"></option>
+								</select>
+							</div>
+							<br />
+							<div class="form-notas ">
+								<label class="" for="curso">Curso</label> <select
+									th:field="*{idcurso}"
+									class="form-control custom-select my-1 mr-sm-2 btn btn-secondary dropdown-toggle"
+									id="curso">
+									<option th:each="curso : ${cbocur}" th:value="${curso.idcurso}"
+										th:utext="${curso.nomcurso}"></option>
+								</select>
+							</div>
+
+						</div>
+
+						<div id="dercard">
+							<div class="form-notas ">
+								<label class="" for="nota1">PEA 01</label> <input
+									th:field="*{nota1}" type="number" min="0" max="20"
+									class="form-control form-control-sm" id="nota1"
+									placeholder="nota1"> <small></small>
+							</div>
+
+							<div class="form-notas  ">
+								<label class="" for="nota2">PEA 02</label> <input
+									th:field="*{nota2}" type="number" min="0" max="20"
+									class="form-control form-control-sm" id="nota2"
+									placeholder="nota2"> <small></small>
+							</div>
+
+							<div class="form-notas">
+								<label class="" for="nota3">PEA 03</label> <input
+									th:field="*{nota3}" type="number" min="0" max="20"
+									class="form-control form-control-sm" id="nota3"
+									placeholder="nota3"> <small></small>
+							</div>
+
+							<div class="form-notas ">
+								<label class="" for="nota4">PEA 04</label> <input
+									th:field="*{nota4}" type="number" min="0" max="20"
+									class="form-control form-control-sm" id="nota4"
+									placeholder="nota4"> <small></small>
+							</div>
+
+							<div class="form-notas ">
+								<label class="" for="exparcial">Examen Parcial</label> <input
+									th:field="*{exparcial}" type="number" min="0" max="20"
+									class="form-control form-control-sm" id="exparcial"
+									placeholder="exparcial"> <small></small>
+							</div>
+
+							<div class="form-notas ">
+								<label class="" for="exfinal">Examen Final</label> <input
+									th:field="*{exfinal}" type="number" min="0" max="20"
+									class="form-control form-control-sm" id="exfinal"
+									placeholder="exfinal"> <small></small>
+							</div>
+
+							<div class="form-notas ">
+								<label class="" for="exsustitutorio">Examen Sustitutorio</label>
+								<input th:field="*{exsustitutorio}" type="number" min="0" max="20"
+									class="form-control form-control-sm" id="exsustitutorio"
+									placeholder="exsustitutorio" value="00"> <small></small>
+							</div>
+
+						</div>
+					</div>
+					<div class="card-footer bg-dark">
+						<input type="submit" class="btn btn-primary btn-sm"
+							value="Guardar" /> <a th:href="@{/cp/menu/profesor}"
+							class="btn btn-primary btn-sm">Regresar</a>
+					</div>
+
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="plantillas/Ptemplate :: footer"></footer>
+</body>
+
+</html>

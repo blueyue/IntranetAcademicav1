@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantillas/Atemplate :: head">
+</head>
+<body class="bodygeneral">
+	<header th:replace="plantillas/Atemplate :: header"></header>
+	<div class="bodysimple">
+		<h1 class="font-weight-bold text-center" th:text="${titulo}" style="background-color: rgba(255, 255, 255, .8);font-size: 1.8rem;"></h1>
+	</div>
+	<div class="bodysimple">
+		<a class="btn btn-primary btn-sm" th:href="@{/carreras/crear}"
+			th:text="'Nuevo Ingreso'"></a>
+	</div>
+	<div class="container">
+
+<form th:action="@{/carreras/listar}" method="get">
+		<div class="row">
+		<div class="col-2"><label class="col-md-2" for="param">Usuario</label></div>
+		<div class="col"><input type="text" th:name="param" class="form-control form-control-sm" id="param" name="param"></div>
+		<div class="col-2"><input type="submit" class="btn btn-primary col" value="Buscar" /></div>
+		</div>
+		</form>	
+
+		<table class="table"
+			style="background-color: rgba(251, 248, 202, .85);">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Carrera</th>
+					<th scope="col"></th>
+					<th scope="col"></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="car:${carreras}">
+					<th scope="row" th:text="${car.idcarrera}">
+					</td>
+					<td th:text="${car.nomcarrera}"></td>
+					<td><a class="btn btn-success btn-sm"
+						th:href="@{/carreras/editar/} + ${car.idcarrera}"
+						th:text="'Editar'" title="Editar Registro"></a></td>
+
+					<td><a class="btn btn-primary btn-sm"
+						th:href="@{/carreras/eliminar/} + ${car.idcarrera}"
+						th:text="'Eliminar'" title="Eliminar Registro"
+						onclick="return confirm('Esta seguro de eliminar el registro?');"></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="row mx-auto">
+			<div class="col">
+				<nav aria-label="Pagination">
+					<ul class="pagination justify-content-center">
+						<li class="page-item"
+							th:classappend="${prev == 0 ? 'disabled': ''}"><a
+							class="page-link" th:href="@{/carreras/listar}+@{|?page=${prev}|}">Anterior</a></li>
+						<li class="page-item" th:each="page : ${pages}"
+							th:classappend="${current == page ? 'active': ''}"><a
+							class="page-link" th:href="@{/carreras/listar}+@{|?page=${page}|}" th:text="${page}"></a>
+						</li>
+						<li class="page-item"
+							th:classappend="${current == last ? 'disabled': ''}"><a
+							class="page-link" th:href="@{/carreras/listar}+@{|?page=${next}|}">Siguiente</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<div class="bodysimple">
+			<a class="btn btn-primary btn-sm" th:href="@{/admin/menu}"
+				th:text="'Regresar'"></a>
+		</div>
+	</div>
+	<footer th:replace="plantillas/Atemplate :: footer"></footer>
+</body>
+</html>

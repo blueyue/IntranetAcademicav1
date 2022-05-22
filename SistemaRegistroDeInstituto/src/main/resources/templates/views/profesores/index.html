@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="plantillas/Ptemplate :: head">
+</head>
+<body class="bodygeneral">
+	<header th:replace="plantillas/Ptemplate :: header"></header>
+	<div class="bodysimple">
+		<h1 class="font-weight-bold text-center "
+			th:text="'Horarios de Clases'" style="background-color: rgba(255, 255, 255, .8);font-size: 1.8rem;"></h1><!-- text-info -->
+	</div>
+<div class="container">
+	
+
+	<div class="row">
+		<!--<div class="table-responsive"> -->
+		<table class="table"
+			style="background-color: rgba(251, 248, 202, .85);">
+			<thead class="thead-dark">
+				<tr>
+					<!--  <th scope="col">Id</th>-->
+					
+					<th scope="col">Curso</th>
+					<th scope="col">Turno</th>
+					<th scope="col">Inicio</th>
+					<th scope="col">Fin</th>
+					<th scope="col">Estado</th>
+					<th scope="col"></th>
+					<th scope="col"></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="cp:${cursoprofesor}">
+					<!-- <th scope="row" th:text ="${cp.iddet}"></td> -->
+					<td th:text="${cp?.profesor?.prof_nom}"></td>
+					<td th:text="${cp?.curso?.nomcurso}"></td>
+					<td th:text="${cp?.turno?.nomturno}"></td>
+					<td th:text="${cp?.horainicurso}"></td>
+					<td th:text="${cp?.horafincurso}"></td>
+					<td th:text="${cp?.estado == 0 ? 'Asociado' : cp?.estado == 1 ? 'Proximamente' : cp?.estado == 2 ? 'EnProceso' :'Finalizado'}"></td>
+
+					<td><a class="btn btn-warning"
+						th:href="@{/notas/visor/profesor/} + ${cp?.iddet}" th:text="'Revisar notas'"
+						title="Editar Registro"></a></td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+		<div class="row mx-auto">
+			<div class="col">
+				<nav aria-label="Pagination">
+					<ul class="pagination justify-content-center">
+						<li class="page-item"
+							th:classappend="${prev == 0 ? 'disabled': ''}"><a
+							class="page-link" th:href="@{/cp/menu/profesor}+@{|?page=${prev}|}">Anterior</a></li>
+						<li class="page-item" th:each="page : ${pages}"
+							th:classappend="${current == page ? 'active': ''}"><a
+							class="page-link" th:href="@{/cp/menu/profesor}+@{|?page=${page}|}" th:text="${page}"></a>
+						</li>
+						<li class="page-item"
+							th:classappend="${current == last ? 'disabled': ''}"><a
+							class="page-link" th:href="@{/cp/menu/profesor}+@{|?page=${next}|}">Siguiente</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		
+	
+	
+	<!--</div>  -->
+	
+	</div>
+	<footer th:replace="plantillas/Ptemplate :: footer"></footer>
+</body>
+</html>

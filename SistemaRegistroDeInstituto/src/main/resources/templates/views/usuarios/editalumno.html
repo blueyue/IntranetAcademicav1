@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantillas/Utemplate :: head">
+</head>
+<body>
+	<header th:replace="plantillas/Utemplate :: header"></header>
+
+	<div class="container col-6 ">
+		<form name=usercreate th:action="@{/usuario/guardaredit}"
+			th:object="${usuario}" method="POST">
+			<div class="card bg-light " style="margin: 3%;">
+				<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+				<div class="card-body col-8 mx-auto">
+
+					<input th:field="*{idusuario}" type="hidden" name="id"
+						class="form-control" />
+
+					<div class="form-group row">
+						<label class="" for="nomusuario">Nombre de Usuario</label> <input
+							th:field="*{nomusuario}" type="text"
+							class="form-control form-control-sm" id="nomusuario"
+							placeholder="nomusuario">
+					</div>
+					<div class="form-group row">
+						<label class="" for="contrasena">Contraseña</label> <input
+							th:field="*{contrasena}" type="text"
+							class="form-control form-control-sm" id="contrasena"
+							placeholder="contrasena">
+					</div>
+
+				</div>
+				<div class="card-footer bg-dark" style="text-align: center">
+					<input type="submit" class="btn btn-primary btn-sm "
+						value="Guardar" /> <a th:href="@{/usuario/mydata}"
+						class="btn btn-primary btn-sm ">Regresar</a>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<footer th:replace="plantillas/Utemplate :: footer"></footer>
+</body>
+
+</html>

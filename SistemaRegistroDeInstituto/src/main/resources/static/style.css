@@ -1,0 +1,65 @@
+.row{
+	padding-bottom: 2%;
+}
+.btnmenu{
+	margin:2%;
+}
+.divmenu{
+	text-align: center;
+	margin:5%;
+}
+
+.hidetext { -webkit-text-security: disc; /* Default */ }
+.label{
+	margin-right:2%;
+	margin-left:2%;
+}
+.bodysimple{
+	margin-top:2%;
+	margin-bottom:2%;
+	padding: 1%;
+	text-align: center;
+	
+}
+.bodygeneral{
+	background:url(image/back1.png) no-repeat center fixed;;
+	background-size: cover;
+    align-items: center;
+}
+    
+    
+#tabledataprof{
+	margin:5%;
+	background-color: rgba(255,255,255,.50);
+	text-align: center;
+}
+#tabledatanotas{
+	margin-top:5%;
+	margin-bottom:10%;
+	background-color: rgba(255,255,255,.23);
+	text-align: center;
+}
+.form-notas{
+	margin: 0.3%;
+	padding: 2%;
+	width: 100%;
+}
+.card{
+	margin:5%;
+	width:auto;
+	display: flex;
+	flex-wrap: nowrap;
+
+}
+#izqcard{
+	width: 70%;
+	margin:2%;
+	padding: 3%;
+}
+#dercard{
+	width: 70%;
+	right: 0;
+	margin:2%;
+	padding-left: 3%;
+	padding-right: 3%;
+}

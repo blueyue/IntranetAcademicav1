@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace = "plantillas/Atemplate :: head">
+</head>
+<body class="bodygeneral">
+		
+		<header th:replace="plantillas/Atemplate :: header"></header>
+		<div class="container">
+		
+		<h1 class="font-weight-bold text-center" style="line-height: 1.7;letter-spacing: -0.053em;font-style: italic;" th:text="'Listado de Usuarios por Alumno'"></h1>
+	
+		<form th:action="@{/alumno/listadouser}" method="get">
+		<div class="row">
+		<div class="col-2"><label class="col-md-2" for="ape">Apellidos</label></div>
+		<div class="col"><input type="text" th:name="paramuser" class="form-control form-control-sm" id="ape" name="paramuser"></div>
+		<div class="col-2"><input type="submit" class="btn btn-primary col" value="Buscar Usuario" /></div>
+		</div>
+		</form>	
+		
+			<div class="bodysimple container" style="background-color: rgba(255,255,255,0.5)">
+			<table class="table">
+				<thead class="thead-dark"> 
+				<tr>
+				 <th scope="col">Alumno</th>
+				 <th scope="col">Nombre de usuario</th>
+				 <!-- <th scope="col">Contraseña</th> -->
+				 <th scope="col">Rol</th>
+				 <th scope="col">Estado</th>
+				 </tr>				 
+				</thead>
+				
+				<tbody>
+				<tr th:each="usu:${alumnos}">
+					<td th:text="${usu?.alum_nom}+' '+${usu?.alum_ape}"></td>
+					<td th:text="${usu?.usuario?.nomusuario}"></td>
+					<!-- <td  th:text="${usu?.usuario?.contrasena}"></td> -->	
+					<td th:text="${usu?.usuario?.rol == 1 ? 'Alumno' : 'No designado'}"></td>				
+					<td th:text="${usu?.usuario?.estado == 1 ? 'Activo':'Desactivo'}"></td>
+				</tr>
+				</tbody>
+			</table>
+			<div class="row mx-auto">
+			<div class="col">
+				<nav aria-label="Pagination">
+					<ul class="pagination justify-content-center">
+						<li class="page-item"
+							th:classappend="${prev == 0 ? 'disabled': ''}"><a
+							class="page-link" th:href="@{/alumno/listadouser}+@{|?page=${prev}|}">Anterior</a></li>
+						<li class="page-item" th:each="page : ${pages}"
+							th:classappend="${current == page ? 'active': ''}"><a
+							class="page-link" th:href="@{/alumno/listadouser}+@{|?page=${page}|}" th:text="${page}"></a>
+						</li>
+						<li class="page-item"
+							th:classappend="${current == last ? 'disabled': ''}"><a
+							class="page-link" th:href="@{/alumno/listadouser}+@{|?page=${next}|}">Siguiente</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+			</div>
+			<div  class="bodysimple"><a class ="btn btn-primary btn-sm" th:href="@{/alumno/listar}" th:text="'Lista Alumnos'" title ="Regresar"></a></div>
+		</div>
+		
+		<footer th:replace="plantillas/Atemplate :: footer"></footer>
+</body>
+</html>

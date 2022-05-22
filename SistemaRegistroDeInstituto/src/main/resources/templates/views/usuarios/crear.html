@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantillas/Atemplate :: head">
+</head>
+<body>
+	<header th:replace="plantillas/Atemplate :: header"></header>
+
+	<div class="container col-6 ">
+		<!-- th:action="${modusuario?.idusuario != null} ? @{/usuario/guardar} : @{/user/savenuevo-usuarios}" -->
+		<form name=usercreate th:action="@{/usuario/guardar}"
+			th:object="${modusuario}" method="POST">
+			<div class="card bg-light">
+				<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+				<div class="card-body col-8 mx-auto">
+
+					<input th:field="*{idusuario}" type="hidden" name="id"
+						class="form-control" />
+
+					<div class="form-group row">
+						<label class="" for="nomusuario">Nombre de Usuario</label> <input
+							th:field="*{nomusuario}" type="text"
+							class="form-control form-control-sm" id="nomusuario"
+							placeholder="nomusuario">
+					</div>
+					<div class="form-group row">
+						<label class="" for="contrasena">Contraseña</label> <input
+							th:field="*{contrasena}" type="text"
+							class="form-control form-control-sm" id="contrasena"
+							placeholder="contrasena">
+					</div>
+					<div class="form-group row">
+					<label class="" for="rol">Rol</label> 
+					<select th:field="*{rol}" class="form-control form-control-sm" id="rol">
+						<option value="1" selected>ALUMNO</option>
+						<option value="2">PROFESOR</option>
+						<option value="3">ADMINISTRADOR</option>
+					</select>
+					</div>
+					<div class="form-group row">
+					<label class="" for="estado">Estado</label> 
+					<select th:field="*{estado}" class="form-control form-control-sm" id="estado">
+						<option value="1" selected>activo</option>
+						<option value="0">desactivo</option>
+						
+					</select>
+					</div>
+			
+				</div>
+
+	
+
+			</div>
+			<div class="card-footer bg-dark" style="text-align: center">
+				<input type="submit" class="btn btn-primary btn-sm " value="Guardar" />
+				<a th:href="@{/usuario/listar}" class="btn btn-primary btn-sm ">Regresar</a>
+			</div>
+
+		</form>
+	</div>
+
+	<footer th:replace="plantillas/Atemplate :: footer"></footer>
+</body>
+
+</html>

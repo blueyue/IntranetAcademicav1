@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantillas/Atemplate :: head">
+</head>
+
+<body>
+	<header th:replace="plantillas/Atemplate :: header"></header>
+
+	<div class="container">
+
+		<div class="card bg-light">
+			<div class="card-header bg-dark text-white" th:text="${titulo}">
+
+			</div>
+			<div class="card-body">
+
+				<form th:action="@{/edit-alumnos/{id}}" th:object="${alumno}" method="POST">
+					<div class="form-group row">
+						<input type="hidden" th:field="*{idalumno}" class="form-control form-control-sm col-6" id="idalumno"
+							placeholder="Id de Alumno">
+						<small></small>
+					</div>
+									
+					<div class="form-group row">
+						<label class="col-md-2" for="alum_nom">Nombres</label>
+						<input type="text" th:field="*{alum_nom}" class="form-control form-control-sm col-6" id="alum_nom"
+							placeholder="Nombre de Alumno">
+						<small></small>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-md-2" for="alum_ape">Apellidos</label>
+						<input type="text" th:field="*{alum_ape}"  class="form-control form-control-sm col-6" id="alum_ape"
+							placeholder="Apellidos de Alumno">
+						<small></small>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-md-2" for="alum_nac">Fecha de Nacimiento</label>
+						<input type="date" th:field="*{alum_nac}"  class="form-control form-control-sm col-6" id="alum_nac"
+							placeholder="Formato:YYYY-MM-DD">
+						<small></small>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-md-2" for="alum_dir">Direccion</label>
+						<input type="text" th:field="*{alum_dir}"  class="form-control form-control-sm col-6" id="alum_dir"
+							placeholder="Direccion del Alumno">
+						<small></small>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-md-2" for="alum_telf">Telefono</label>
+						<input type="text" th:field="*{alum_telf}"  class="form-control form-control-sm col-6" id="alum_telf"
+							placeholder="Telefono del Alumno">
+						<small></small>
+					</div>
+
+					<div class="card-footer bg-dark">
+						<input type="submit" class="btn btn-primary btn-sm" value="Guardar"/>
+					</div>			
+					
+				</form>
+
+			</div>
+		</div>
+	</div>
+	
+	<footer th:replace="plantillas/Atemplate :: footer"></footer>
+</body>
+
+</html>

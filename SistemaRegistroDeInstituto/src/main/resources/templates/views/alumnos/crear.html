@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantillas/Atemplate :: head">
+</head>
+
+<body>
+	<header th:replace="plantillas/Atemplate :: header"></header>
+
+	<div class="container">
+
+		<div class="card bg-light">
+		<form th:action="@{/alumno/guardar}" th:object="${alumno}" method="POST">
+			<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+			<div class="card-body col-10 mx-auto">
+
+				
+					<div class="form-group row">
+						<input type="hidden" th:field="*{idalumno}" class="form-control form-control-sm col-6" id="idalumno"
+							placeholder="Id de Alumno">
+					</div>
+						
+					<div class="form-group row">
+						<label class="col-md-2" for="codalum">Código/DNI</label><!-- ANSI/UTF-8 -->
+						<input type="text" maxlength="8" th:field="*{codalum}" class="form-control form-control-sm col" id="codalum"
+							placeholder="Nro. de DNI" required>
+							<!-- <br/> &nbsp; -->
+						<label class="col-md-2" for="idusuario">ID Usuario</label>
+						<input type="number" th:field="*{idusuario}"  class="form-control form-control-sm col" id="idusuario"
+							placeholder="ID disponible">
+					</div>			
+					<div class="form-group row">
+						<label class="col-md-4" for="alum_nom">Nombres</label>
+						<input type="text" th:field="*{alum_nom}" class="form-control form-control-sm col" id="alum_nom"
+							placeholder="Nombre de Alumno" required>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-md-4" for="alum_ape">Apellidos</label>
+						<input type="text" th:field="*{alum_ape}"  class="form-control form-control-sm col" id="alum_ape"
+							placeholder="Apellidos de Alumno" required>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-md-4" for="alum_telf">Telefono</label>
+						<input type="text" th:field="*{alum_telf}"  max="999999999" class="form-control form-control-sm col" id="alum_telf"
+							placeholder="Telefono del Alumno" required>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-md-4" for="alum_dir">Direccion</label>
+						<input type="text" th:field="*{alum_dir}"  class="form-control form-control-sm col" id="alum_dir"
+							placeholder="Direccion del Alumno" required>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-md-4" for="alum_nac">Fecha de Nacimiento</label>
+						<input type="date" th:field="*{alum_nac}"  class="form-control form-control-sm col" id="alum_nac"
+							placeholder="Formato:DD-MM-YYYY" required>
+					</div>
+					<div class="form-group row">
+						
+					</div>
+			</div>
+			<div class="card-footer bg-dark" style="text-align:center">
+						<input type="submit" class="btn btn-primary btn-sm" value="Guardar"/>
+						<a class ="btn btn-primary btn-sm" th:href="@{/alumno/listar}" th:text="'Regresar'" title ="Lista Alumnos"></a>
+					</div>
+			</form>
+		</div>
+	</div>
+	
+	<footer th:replace="plantillas/Atemplate :: footer"></footer>
+</body>
+
+</html>

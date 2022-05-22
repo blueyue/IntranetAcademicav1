@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantillas/Atemplate :: head">
+</head>
+<body>
+	<header th:replace="plantillas/Atemplate :: header"></header>
+
+	<div class="container">
+		<div class="card bg-light">
+			<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<form th:action="@{/cc/guardar}"th:object="${carcur}"method="POST">
+ 
+					<div class="form-group row">
+						<input type="hidden" th:field="*{idcc}" class="form-control form-control-sm col-6" id="idcc">
+					</div>
+					
+					<div class="form-group row">
+						<label class="col-md-2" for="carrera">Carrera</label> 
+						<select th:field="*{idcarrera}"  
+							class="form-control form-control-sm col-6"
+							id="carrera">
+							<option 
+								th:each="car:${lstCarrera}" 
+								th:value="${car.idcarrera}"
+								th:text="${car.nomcarrera}" />
+
+						</select>
+					</div> 
+					
+					<div class="form-group row">
+						<label class="col-md-2" for="ciclo">Ciclo</label>
+						 <input th:field="*{ciclo}"  
+							type="number" min="1" max="20" class="form-control form-control-sm col-6"
+							id="ciclo" placeholder="ciclo"> <small></small>
+					</div>
+					
+						<!--</div>-->
+						<div class="form-group row">
+						<label class="col-md-2" for="curso">Curso</label> 
+						<select th:field="*{curso}"  
+							class="form-control form-control-sm col-6"
+							id="curso">
+							<option 
+								th:each="cur:${lstCurso}" 
+								th:value="${cur.idcurso}"
+								th:text="${cur.nomcurso}" />
+
+						</select>
+					</div> 
+
+					<div class="card-footer bg-dark">
+						<input type="submit" class="btn btn-primary btn-sm"
+							value="Guardar" />
+							<a th:href="@{/cc/listar}" class="btn btn-primary btn-sm">Regresar</a>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="plantillas/Atemplate :: footer"></footer>
+</body>
+
+</html>

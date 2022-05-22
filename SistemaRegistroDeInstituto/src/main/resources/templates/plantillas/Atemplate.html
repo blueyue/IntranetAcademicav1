@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:fragment="head">
+		<meta charset="UTF-8">
+		<title>Intranet de Administradores</title>
+		<link rel="icon" type="image/png" href="https://img.icons8.com/office/16/000000/gears.png" sizes="32x32" >
+		
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" 
+		integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" 
+		crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="../style.css">
+		<link rel="stylesheet" type="text/css" href="../../style.css">
+	</head>
+
+	<body>
+	
+		<header th:fragment="header">
+		
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+				<div class="container">
+				
+				<div class="navbar-nav mr-auto"><a class="navbar-brand" th:href="@{/admin/menu}">
+						<strong>INSTITUTO</strong>
+					</a></div>
+				
+				
+					<button class="navbar-toggler" type="button" data-toggle="collapse" 
+						data-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent" aria-expanded="false" 
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+		
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					
+						<ul class="navbar-nav mx-auto">
+							
+					<li class="nav-item"><a class="nav-link" th:href="@{/alumno/listar}">Alumnos</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/cursos/listar}">Cursos</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/carreras/listar}">Carreras</a></li>	
+						</ul>
+						<ul class="navbar-nav ml-auto">
+							<li class="nav-item "><a class="nav-link" th:href="@{/intranet/logout}"><img src="https://img.icons8.com/external-sbts2018-blue-sbts2018/45/000000/external-logout-social-media-basic-1-sbts2018-blue-sbts2018.png"/></a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		<div> <h1 style="text-align: center;" data-th-text="${codadmin}"></h1> </div>
+		
+		</header>
+		
+		<div class="container">
+		
+		</div>
+		
+		<footer th:fragment="footer" class="bg-dark text-center text-white fixed-bottom">
+			<div class="container">
+				<p>Desarrollado por Blueyue &copy; 2021 | Using Spring Boot IDE and SweetAlert,Bootstrap library | Image Resources from iconos8.es</p>
+			</div>
+			
+			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+				integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 
+				crossorigin="anonymous"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" 
+				integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" 
+				crossorigin="anonymous"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" 
+				integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" 
+				crossorigin="anonymous"></script>
+				
+			<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+			<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+			<script src="../funciones.js"></script>
+		</footer>
+	</body>
+
+</html>
